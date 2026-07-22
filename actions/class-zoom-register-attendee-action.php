@@ -16,28 +16,28 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 		$this->set_sentence(
 			sprintf(
 				/* translators: 1: attendee email field + meta group, 2: meeting ID meta */
-				esc_html__( 'Register {{an attendee:%1$s}} for {{a Zoom meeting:%2$s}}', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				esc_html__( 'Register {{an attendee:%1$s}} for {{a Zoom meeting:%2$s}}', 'zoomy-automator-integration' ),
 				'ZOOM_ATTENDEE_EMAIL:' . $this->get_action_meta(),
 				$this->get_action_meta()
 			)
 		);
-		$this->set_readable_sentence( esc_html__( 'Register an attendee for a Zoom meeting', 'wpzoomy-integration-zoom-uncanny-automator' ) );
+		$this->set_readable_sentence( esc_html__( 'Register an attendee for a Zoom meeting', 'zoomy-automator-integration' ) );
 	}
 
 	public function options() {
 		return array(
 			array(
 				'option_code'     => $this->get_action_meta(),
-				'label'           => esc_html__( 'Meeting ID', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'Meeting ID', 'zoomy-automator-integration' ),
 				'input_type'      => 'text',
 				'required'        => true,
 				'supports_tokens' => true,
 				'relevant_tokens' => array(),
-				'description'     => esc_html__( 'Zoom Meeting ID, or a token from Create a Zoom meeting.', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'description'     => esc_html__( 'Zoom Meeting ID, or a token from Create a Zoom meeting.', 'zoomy-automator-integration' ),
 			),
 			array(
 				'option_code'     => 'ZOOM_ATTENDEE_EMAIL',
-				'label'           => esc_html__( 'Attendee Email', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'Attendee Email', 'zoomy-automator-integration' ),
 				'input_type'      => 'email',
 				'required'        => true,
 				'supports_tokens' => true,
@@ -45,7 +45,7 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 			),
 			array(
 				'option_code'     => 'ZOOM_ATTENDEE_FIRST_NAME',
-				'label'           => esc_html__( 'First Name', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'First Name', 'zoomy-automator-integration' ),
 				'input_type'      => 'text',
 				'required'        => true,
 				'supports_tokens' => true,
@@ -53,7 +53,7 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 			),
 			array(
 				'option_code'     => 'ZOOM_ATTENDEE_LAST_NAME',
-				'label'           => esc_html__( 'Last Name', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'Last Name', 'zoomy-automator-integration' ),
 				'input_type'      => 'text',
 				'required'        => false,
 				'supports_tokens' => true,
@@ -65,11 +65,11 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 	public function define_tokens() {
 		return array(
 			'ZOOM_REGISTRANT_ID'       => array(
-				'name' => esc_html__( 'Registrant ID', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Registrant ID', 'zoomy-automator-integration' ),
 				'type' => 'text',
 			),
 			'ZOOM_REGISTRANT_JOIN_URL' => array(
-				'name' => esc_html__( 'Registrant Join URL', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Registrant Join URL', 'zoomy-automator-integration' ),
 				'type' => 'url',
 			),
 		);
@@ -82,7 +82,7 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 		$last_name  = isset( $parsed['ZOOM_ATTENDEE_LAST_NAME'] ) ? sanitize_text_field( $parsed['ZOOM_ATTENDEE_LAST_NAME'] ) : '';
 
 		if ( empty( $meeting_id ) || empty( $email ) || empty( $first_name ) || ! is_email( $email ) ) {
-			throw new \Exception( esc_html__( 'Meeting ID, email, and first name are required.', 'wpzoomy-integration-zoom-uncanny-automator' ) );
+			throw new \Exception( esc_html__( 'Meeting ID, email, and first name are required.', 'zoomy-automator-integration' ) );
 		}
 
 		$response   = zoom_automator_register_meeting_participant( $meeting_id, $first_name, $last_name, $email );
@@ -90,9 +90,11 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 
 		if ( zoom_automator_is_zoom_api_error( $registrant ) ) {
 			throw new \Exception(
-				zoom_automator_get_api_error_message(
-					$registrant,
-					esc_html__( 'Zoom API could not register the attendee.', 'wpzoomy-integration-zoom-uncanny-automator' )
+				esc_html(
+					zoom_automator_get_api_error_message(
+						$registrant,
+						__( 'Zoom API could not register the attendee.', 'zoomy-automator-integration' )
+					)
 				)
 			);
 		}

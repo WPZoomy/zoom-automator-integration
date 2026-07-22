@@ -11,8 +11,8 @@ class Zoom_Meeting_Updated_Trigger extends \Uncanny_Automator\Recipe\Trigger {
 		$this->set_trigger_code( 'ZOOM_MEETING_UPDATED' );
 		$this->set_trigger_meta( 'ZOOM_MEETING_UPDATED_META' );
 		$this->set_author( 'Abdurrehman Abbasi' );
-		$this->set_sentence( esc_html__( 'A Zoom meeting is updated', 'wpzoomy-integration-zoom-uncanny-automator' ) );
-		$this->set_readable_sentence( esc_html__( 'A Zoom meeting is updated', 'wpzoomy-integration-zoom-uncanny-automator' ) );
+		$this->set_sentence( esc_html__( 'A Zoom meeting is updated', 'zoomy-automator-integration' ) );
+		$this->set_readable_sentence( esc_html__( 'A Zoom meeting is updated', 'zoomy-automator-integration' ) );
 		$this->add_action( 'zoom_wp_after_update_meeting', 10, 3 );
 	}
 
@@ -28,27 +28,27 @@ class Zoom_Meeting_Updated_Trigger extends \Uncanny_Automator\Recipe\Trigger {
 	public function define_tokens( $trigger, $tokens ) {
 		$tokens[] = array(
 			'tokenId'   => 'ZOOM_MEETING_ID',
-			'tokenName' => esc_html__( 'Meeting ID', 'wpzoomy-integration-zoom-uncanny-automator' ),
+			'tokenName' => esc_html__( 'Meeting ID', 'zoomy-automator-integration' ),
 			'tokenType' => 'int',
 		);
 		$tokens[] = array(
 			'tokenId'   => 'ZOOM_MEETING_TOPIC',
-			'tokenName' => esc_html__( 'Meeting Topic', 'wpzoomy-integration-zoom-uncanny-automator' ),
+			'tokenName' => esc_html__( 'Meeting Topic', 'zoomy-automator-integration' ),
 			'tokenType' => 'text',
 		);
 		$tokens[] = array(
 			'tokenId'   => 'ZOOM_MEETING_JOIN_URL',
-			'tokenName' => esc_html__( 'Join URL', 'wpzoomy-integration-zoom-uncanny-automator' ),
+			'tokenName' => esc_html__( 'Join URL', 'zoomy-automator-integration' ),
 			'tokenType' => 'url',
 		);
 		$tokens[] = array(
 			'tokenId'   => 'ZOOM_MEETING_START_TIME',
-			'tokenName' => esc_html__( 'Start Time', 'wpzoomy-integration-zoom-uncanny-automator' ),
+			'tokenName' => esc_html__( 'Start Time', 'zoomy-automator-integration' ),
 			'tokenType' => 'text',
 		);
 		$tokens[] = array(
 			'tokenId'   => 'ZOOM_MEETING_HOST_ID',
-			'tokenName' => esc_html__( 'Host ID', 'wpzoomy-integration-zoom-uncanny-automator' ),
+			'tokenName' => esc_html__( 'Host ID', 'zoomy-automator-integration' ),
 			'tokenType' => 'text',
 		);
 

@@ -16,18 +16,18 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 		$this->set_sentence(
 			sprintf(
 				/* translators: %1$s: action meta code */
-				esc_html__( 'Create {{a Zoom meeting:%1$s}}', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				esc_html__( 'Create {{a Zoom meeting:%1$s}}', 'zoomy-automator-integration' ),
 				$this->get_action_meta()
 			)
 		);
-		$this->set_readable_sentence( esc_html__( 'Create a Zoom meeting', 'wpzoomy-integration-zoom-uncanny-automator' ) );
+		$this->set_readable_sentence( esc_html__( 'Create a Zoom meeting', 'zoomy-automator-integration' ) );
 	}
 
 	public function options() {
 		return array(
 			array(
 				'option_code'     => $this->get_action_meta(),
-				'label'           => esc_html__( 'Meeting Topic', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'Meeting Topic', 'zoomy-automator-integration' ),
 				'input_type'      => 'text',
 				'required'        => true,
 				'supports_tokens' => true,
@@ -35,16 +35,16 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 			),
 			array(
 				'option_code'     => 'ZOOM_MEETING_START_TIME',
-				'label'           => esc_html__( 'Start Time (YYYY-MM-DD HH:MM:SS)', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'Start Time (YYYY-MM-DD HH:MM:SS)', 'zoomy-automator-integration' ),
 				'input_type'      => 'text',
 				'required'        => true,
 				'supports_tokens' => true,
 				'relevant_tokens' => array(),
-				'description'     => esc_html__( 'Example: 2026-07-25 15:00:00 (site timezone).', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'description'     => esc_html__( 'Example: 2026-07-25 15:00:00 (site timezone).', 'zoomy-automator-integration' ),
 			),
 			array(
 				'option_code'     => 'ZOOM_MEETING_DURATION',
-				'label'           => esc_html__( 'Duration (minutes)', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'label'           => esc_html__( 'Duration (minutes)', 'zoomy-automator-integration' ),
 				'input_type'      => 'text',
 				'required'        => true,
 				'supports_tokens' => true,
@@ -56,23 +56,23 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 	public function define_tokens() {
 		return array(
 			'ZOOM_MEETING_ID'         => array(
-				'name' => esc_html__( 'Meeting ID', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Meeting ID', 'zoomy-automator-integration' ),
 				'type' => 'int',
 			),
 			'ZOOM_MEETING_TOPIC'      => array(
-				'name' => esc_html__( 'Meeting Topic', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Meeting Topic', 'zoomy-automator-integration' ),
 				'type' => 'text',
 			),
 			'ZOOM_MEETING_JOIN_URL'   => array(
-				'name' => esc_html__( 'Join URL', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Join URL', 'zoomy-automator-integration' ),
 				'type' => 'url',
 			),
 			'ZOOM_MEETING_START_TIME' => array(
-				'name' => esc_html__( 'Start Time', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Start Time', 'zoomy-automator-integration' ),
 				'type' => 'text',
 			),
 			'ZOOM_MEETING_HOST_ID'    => array(
-				'name' => esc_html__( 'Host ID', 'wpzoomy-integration-zoom-uncanny-automator' ),
+				'name' => esc_html__( 'Host ID', 'zoomy-automator-integration' ),
 				'type' => 'text',
 			),
 		);
@@ -84,13 +84,13 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 		$duration   = isset( $parsed['ZOOM_MEETING_DURATION'] ) ? absint( $parsed['ZOOM_MEETING_DURATION'] ) : 0;
 
 		if ( empty( $topic ) || empty( $start_time ) || empty( $duration ) ) {
-			throw new \Exception( esc_html__( 'Meeting topic, start time, and duration are required.', 'wpzoomy-integration-zoom-uncanny-automator' ) );
+			throw new \Exception( esc_html__( 'Meeting topic, start time, and duration are required.', 'zoomy-automator-integration' ) );
 		}
 
 		$host_id = zoom_automator_get_zoom_host_id( $user_id );
 
 		if ( empty( $host_id ) ) {
-			throw new \Exception( esc_html__( 'No Zoom host ID is assigned to a WordPress user. Assign one in Zoom Meetings settings.', 'wpzoomy-integration-zoom-uncanny-automator' ) );
+			throw new \Exception( esc_html__( 'No Zoom host ID is assigned to a WordPress user. Assign one in Zoom Meetings settings.', 'zoomy-automator-integration' ) );
 		}
 
 		$meeting_data = array(
@@ -108,9 +108,11 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 
 		if ( zoom_automator_is_zoom_api_error( $meeting ) ) {
 			throw new \Exception(
-				zoom_automator_get_api_error_message(
-					$meeting,
-					esc_html__( 'Zoom API could not create the meeting.', 'wpzoomy-integration-zoom-uncanny-automator' )
+				esc_html(
+					zoom_automator_get_api_error_message(
+						$meeting,
+						__( 'Zoom API could not create the meeting.', 'zoomy-automator-integration' )
+					)
 				)
 			);
 		}

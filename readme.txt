@@ -1,18 +1,18 @@
-=== WP Zoomy Integration for Zoom and Uncanny Automator ===
+=== Zoomy Automator Integration ===
 Contributors: wpzoomy
 Tags: zoom, automator, uncanny automator, meetings
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.4
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Connects WP Zoomy with Uncanny Automator for Zoom meeting automation.
+Zoomy Automator Integration connects WP Zoomy with Uncanny Automator for Zoom meeting automation.
 
 == Description ==
 
-WP Zoomy Integration for Zoom and Uncanny Automator adds Zoom triggers and actions to Uncanny Automator when used with **WP Zoomy** (wp-zoom-addon) and **Uncanny Automator**.
+Zoomy Automator Integration adds Zoom triggers and actions to Uncanny Automator when used with **WP Zoomy** (wp-zoom-addon) and **Uncanny Automator**.
 
 **Triggers**
 
@@ -27,7 +27,7 @@ WP Zoomy Integration for Zoom and Uncanny Automator adds Zoom triggers and actio
 == Installation ==
 
 1. Install and activate [Uncanny Automator](https://wordpress.org/plugins/uncanny-automator/) and **WP Zoomy** (wp-zoom-addon).
-2. Upload the plugin folder to `/wp-content/plugins/wpzoomy-integration-zoom-uncanny-automator/`.
+2. Upload the plugin folder to `/wp-content/plugins/zoomy-automator-integration/`.
 3. Activate the plugin through the Plugins screen.
 4. Create or edit an Automator recipe and select Zoom triggers or actions.
 
@@ -60,6 +60,12 @@ This service is provided by Zoom Video Communications, Inc.:
 [Privacy Statement](https://www.zoom.com/en/trust/privacy/privacy-statement/)
 
 == Changelog ==
+
+= 1.2.6 =
+* Renamed plugin to Zoomy Automator Integration (dropped WP from name/slug)
+
+= 1.2.5 =
+* Renamed plugin to WP Zoomy Automator Integration
 
 = 1.2.4 =
 * Hardened Zoom API requests and input handling for WordPress.org security review
