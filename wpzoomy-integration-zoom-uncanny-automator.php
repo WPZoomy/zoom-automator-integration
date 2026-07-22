@@ -1,22 +1,24 @@
 <?php
 /**
- * Plugin Name:       Zoom Automator Integration
+ * Plugin Name:       WP Zoomy Integration for Zoom and Uncanny Automator
  * Plugin URI:        https://gitlab.com/teams4evolve/zoom-automator-integration
  * Description:       Connects WP Zoomy with Uncanny Automator — meeting triggers and actions to create meetings or register attendees.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Requires at least: 5.8
  * Requires PHP:      7.4
- * Author:            elearningevolve
- * Author URI:        https://elearningevolve.com/
- * Text Domain:       zoom-automator-integration
- * Requires Plugins:  uncanny-automator, wp-zoom-addon
+ * Author:            wpzoomy
+ * Author URI:        https://wpzoomy.com/
+ * License:           GPLv2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       wpzoomy-integration-zoom-uncanny-automator
+ * Requires Plugins:  uncanny-automator
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ZOOM_AUTOMATOR_VERSION', '1.2.3' );
+define( 'ZOOM_AUTOMATOR_VERSION', '1.2.4' );
 define( 'ZOOM_AUTOMATOR_FILE', __FILE__ );
 define( 'ZOOM_AUTOMATOR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ZOOM_AUTOMATOR_URL', plugin_dir_url( __FILE__ ) );
@@ -54,7 +56,7 @@ function zoom_automator_check_dependencies() {
 				esc_html(
 					sprintf(
 						/* translators: %s: comma-separated list of plugin names */
-						__( 'Zoom Automator Integration requires %s to be installed and active.', 'zoom-automator-integration' ),
+						__( 'WP Zoomy Integration for Zoom and Uncanny Automator requires %s to be installed and active.', 'wpzoomy-integration-zoom-uncanny-automator' ),
 						implode( ', ', $missing )
 					)
 				)
