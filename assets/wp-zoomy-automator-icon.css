@@ -1,0 +1,49 @@
+/**
+ * WP Zoomy Automator icon sizing.
+ *
+ * - Integration picker: Automator default 40x40 (plain logo, no badge).
+ * - Recipe item icons: fill the circular wrapper so size stays strong.
+ *
+ * @package Zoomy_Automator_Integration
+ */
+
+.uap-item-icon:has(img[src*="wp-zoomy-icon"]) {
+	position: relative;
+	overflow: hidden;
+}
+
+.uap-item-icon img[src*="wp-zoomy-icon"] {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	max-height: none !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	border-radius: inherit;
+	display: block;
+	position: absolute !important;
+	inset: 0;
+	left: 0 !important;
+	top: 0 !important;
+	right: 0;
+	bottom: 0;
+	padding: 6px;
+	box-sizing: border-box;
+	margin: 0 !important;
+	transform: none !important;
+}
+
+/*
+ * Picker: keep Automator 40x40, but scale the glyph up slightly so the
+ * wide camera mark doesn't look smaller than denser peer logos.
+ */
+.uap .item-integration__logo img[src*="wp-zoomy-icon"] {
+	width: 40px !important;
+	height: 40px !important;
+	max-width: 40px !important;
+	max-height: 40px !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	transform: scale(1.15);
+	transform-origin: center center;
+}

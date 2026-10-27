@@ -1,4 +1,9 @@
 <?php
+/**
+ * Shared helpers for Zoomy Automator Integration.
+ *
+ * @package Zoomy_Automator_Integration
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -81,7 +86,13 @@ function zoom_automator_decode_zoom_response( $response ) {
 		return $response;
 	}
 
-	return json_decode( $response );
+	if ( ! is_string( $response ) ) {
+		return null;
+	}
+
+	$decoded = json_decode( $response );
+
+	return is_object( $decoded ) ? $decoded : null;
 }
 
 /**
@@ -91,7 +102,11 @@ function zoom_automator_decode_zoom_response( $response ) {
  * @return bool
  */
 function zoom_automator_is_zoom_api_error( $response ) {
-	return empty( $response ) || ! empty( $response->code );
+	if ( ! is_object( $response ) ) {
+		return true;
+	}
+
+	return ! empty( $response->code );
 }
 
 /**
@@ -102,7 +117,7 @@ function zoom_automator_is_zoom_api_error( $response ) {
  * @return string
  */
 function zoom_automator_get_api_error_message( $response, $fallback ) {
-	if ( isset( $response->message ) && is_string( $response->message ) && '' !== $response->message ) {
+	if ( is_object( $response ) && isset( $response->message ) && is_string( $response->message ) && '' !== $response->message ) {
 		return sanitize_text_field( $response->message );
 	}
 

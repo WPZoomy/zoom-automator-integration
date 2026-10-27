@@ -1,11 +1,24 @@
 <?php
+/**
+ * Action: Create a Zoom meeting.
+ *
+ * @package Zoomy_Automator_Integration
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Creates a Zoom meeting through WP Zoomy.
+ */
 class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 
+	/**
+	 * Configure the action.
+	 *
+	 * @return void
+	 */
 	protected function setup_action() {
 		$this->set_integration( 'ZOOM_WP' );
 		$this->set_action_code( 'ZOOM_CREATE_MEETING' );
@@ -23,6 +36,11 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 		$this->set_readable_sentence( esc_html__( 'Create a Zoom meeting', 'zoomy-automator-integration' ) );
 	}
 
+	/**
+	 * Define action option fields.
+	 *
+	 * @return array
+	 */
 	public function options() {
 		return array(
 			array(
@@ -53,6 +71,11 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 		);
 	}
 
+	/**
+	 * Define tokens produced by this action.
+	 *
+	 * @return array
+	 */
 	public function define_tokens() {
 		return array(
 			'ZOOM_MEETING_ID'         => array(
@@ -78,6 +101,17 @@ class Zoom_Create_Meeting_Action extends \Uncanny_Automator\Recipe\Action {
 		);
 	}
 
+	/**
+	 * Create the Zoom meeting.
+	 *
+	 * @param int   $user_id     User ID.
+	 * @param array $action_data Action data.
+	 * @param int   $recipe_id   Recipe ID.
+	 * @param array $args        Recipe args.
+	 * @param array $parsed      Parsed option values.
+	 * @return bool
+	 * @throws \Exception When required data is missing or the Zoom API returns an error.
+	 */
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$topic      = isset( $parsed[ $this->get_action_meta() ] ) ? sanitize_text_field( $parsed[ $this->get_action_meta() ] ) : '';
 		$start_time = isset( $parsed['ZOOM_MEETING_START_TIME'] ) ? sanitize_text_field( $parsed['ZOOM_MEETING_START_TIME'] ) : '';

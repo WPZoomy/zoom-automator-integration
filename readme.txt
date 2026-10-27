@@ -2,15 +2,18 @@
 Contributors: wpzoomy
 Tags: zoom, automator, uncanny automator, meetings
 Requires at least: 5.8
-Tested up to: 7.0
-Requires PHP: 7.4
-Stable tag: 1.2.6
+Tested up to: 7.1.1
+Requires PHP: 7.5
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Zoomy Automator Integration connects WP Zoomy with Uncanny Automator for Zoom meeting automation.
 
 == Description ==
+
+**Dedicated Support**
+For quick support and assistance, please contact us [here](https://elearningevolve.com/contact/).
 
 Zoomy Automator Integration adds Zoom triggers and actions to Uncanny Automator when used with **WP Zoomy** (wp-zoom-addon) and **Uncanny Automator**.
 
@@ -33,17 +36,83 @@ Zoomy Automator Integration adds Zoom triggers and actions to Uncanny Automator 
 
 == Frequently Asked Questions ==
 
-= What plugins are required? =
+= What plugins do I need? =
 
-Uncanny Automator and WP Zoomy (wp-zoom-addon) must both be installed and active.
+Uncanny Automator and WP Zoomy (wp-zoom-addon) must both be installed and active. Without them, Zoom triggers and actions will not load.
 
-= Why is my Create Meeting action failing? =
+= I installed the plugin but I don’t see Zoom in Automator. Why? =
 
-Assign a Zoom host ID to at least one WordPress user under Zoom Meetings settings, and ensure Zoom API credentials are configured in WP Zoomy.
+Check that Uncanny Automator and WP Zoomy are both active. If either is missing, an admin notice appears and the WP Zoomy integration will not load.
 
-= Why is Register Attendee failing? =
+= How do I connect my Zoom account? =
 
-The meeting must have Zoom registration enabled. Meetings created by this integration use automatic approval registration so attendees can be registered. Existing meetings need registration enabled in Zoom/WP Zoomy. Zoom Pro or higher is required for meeting registration.
+Set up your Zoom API credentials in WP Zoomy. This plugin uses that connection and does not add a separate Zoom login.
+
+= Where do I find the Zoom triggers and actions? =
+
+In Automator, open a recipe and look under WP Zoomy.
+
+= What does this plugin do? =
+
+Triggers:
+
+* A Zoom meeting is created
+* A Zoom meeting is updated
+
+Actions:
+
+* Create a Zoom meeting
+* Register an attendee for a Zoom meeting
+
+= When does a recipe actually start? =
+
+When a meeting is created or updated through WP Zoomy on your site. Changes made only inside the Zoom website do not start these recipes.
+
+= Creating Meetings =
+
+Questions about creating Zoom meetings from an Automator recipe.
+
+= Why isn’t my meeting being created? =
+
+Common causes:
+
+* Zoom API credentials are not configured in WP Zoomy
+* No WordPress user has a Zoom host ID assigned in Zoom Meetings settings
+* Meeting topic, start time, or duration is missing
+
+= What start time format should I use? =
+
+Use `YYYY-MM-DD HH:MM:SS` in your WordPress site timezone. Example: `2026-07-25 15:00:00`.
+
+= Why isn’t attendee registration working? =
+
+Check all of the following:
+
+* The meeting has Zoom registration enabled
+* Meetings created by this plugin use automatic-approval registration
+* Existing meetings need registration enabled manually in Zoom/WP Zoomy
+* Zoom Pro or higher is required for meeting registration
+* A valid email and first name are required
+
+= Can I create a meeting and register someone in the same recipe? =
+
+Yes. Pass the Meeting ID token from Create a Zoom meeting into Register an attendee.
+
+= Can I reuse the meeting link or ID in later steps? =
+
+Yes. Use tokens such as Meeting ID, Topic, Join URL, Start Time, Host ID, and (after registration) Registrant Join URL.
+
+= Do I need a paid Zoom plan? =
+
+Creating meetings works with a normal Zoom account connected in WP Zoomy. Registering attendees generally requires Zoom Pro or higher because meeting registration is a paid Zoom feature.
+
+= Does this work with Zoom webinars? =
+
+No. Webinar options were removed. This version supports meetings only.
+
+= Where can I get support? =
+
+For quick support and assistance, contact us here: https://elearningevolve.com/contact/
 
 == External services ==
 
@@ -58,6 +127,17 @@ Data is sent only when those Automator actions run. No data is sent on every pag
 This service is provided by Zoom Video Communications, Inc.:
 [Terms of Service](https://www.zoom.com/en/trust/terms/)
 [Privacy Statement](https://www.zoom.com/en/trust/privacy/privacy-statement/)
+
+== Our Other Plugins ==
+
+1. [Add From Server Reloaded](https://wordpress.org/plugins/add-from-server-reloaded/)
+2. [Evolve's Learndash To Lifter](https://wordpress.org/plugins/evolve-learndash-to-lifter/)
+3. [MasterQuiz AI](https://masterquiz.io/)
+4. [Simple Email Scheduler](https://wordpress.org/plugins/simple-email-scheduler/)
+5. [TopBar Buddy](https://wordpress.org/plugins/topbar-buddy/)
+6. [UpdateGuard – Safe Update Manager](https://wordpress.org/plugins/updateguard/)
+7. [Virtual Classroom – Video Conferencing & Online Meeting with BigBlueButton(Free)](https://wordpress.org/plugins/video-conferencing-with-bbb/)
+8. [Virtual Classroom for WordPress (Pro)](https://elearningevolve.com/products/wp-virtual-classroom/)
 
 == Changelog ==
 

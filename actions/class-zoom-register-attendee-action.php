@@ -1,11 +1,24 @@
 <?php
+/**
+ * Action: Register an attendee for a Zoom meeting.
+ *
+ * @package Zoomy_Automator_Integration
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Registers an attendee for a Zoom meeting through the Zoom API.
+ */
 class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 
+	/**
+	 * Configure the action.
+	 *
+	 * @return void
+	 */
 	protected function setup_action() {
 		$this->set_integration( 'ZOOM_WP' );
 		$this->set_action_code( 'ZOOM_REGISTER_ATTENDEE' );
@@ -24,6 +37,11 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 		$this->set_readable_sentence( esc_html__( 'Register an attendee for a Zoom meeting', 'zoomy-automator-integration' ) );
 	}
 
+	/**
+	 * Define action option fields.
+	 *
+	 * @return array
+	 */
 	public function options() {
 		return array(
 			array(
@@ -62,6 +80,11 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 		);
 	}
 
+	/**
+	 * Define tokens produced by this action.
+	 *
+	 * @return array
+	 */
 	public function define_tokens() {
 		return array(
 			'ZOOM_REGISTRANT_ID'       => array(
@@ -75,6 +98,17 @@ class Zoom_Register_Attendee_Action extends \Uncanny_Automator\Recipe\Action {
 		);
 	}
 
+	/**
+	 * Register the attendee with Zoom.
+	 *
+	 * @param int   $user_id     User ID.
+	 * @param array $action_data Action data.
+	 * @param int   $recipe_id   Recipe ID.
+	 * @param array $args        Recipe args.
+	 * @param array $parsed      Parsed option values.
+	 * @return bool
+	 * @throws \Exception When required data is missing or the Zoom API returns an error.
+	 */
 	protected function process_action( $user_id, $action_data, $recipe_id, $args, $parsed ) {
 		$meeting_id = isset( $parsed[ $this->get_action_meta() ] ) ? absint( $parsed[ $this->get_action_meta() ] ) : 0;
 		$email      = isset( $parsed['ZOOM_ATTENDEE_EMAIL'] ) ? sanitize_email( $parsed['ZOOM_ATTENDEE_EMAIL'] ) : '';
