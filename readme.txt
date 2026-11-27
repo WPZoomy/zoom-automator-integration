@@ -2,7 +2,7 @@
 Contributors: wpzoomy
 Tags: zoom, automator, uncanny automator, meetings
 Requires at least: 5.8
-Tested up to: 7.1.1
+Tested up to: 7.1.5
 Requires PHP: 7.5
 Stable tag: 1.2.7
 License: GPLv2 or later
